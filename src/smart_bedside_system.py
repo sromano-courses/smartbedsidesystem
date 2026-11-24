@@ -46,7 +46,7 @@ class SmartBedsideSystem:
         return spo2
 
     def manage_alarm(self) -> None:
-        
+
         spo2 = self.read_vital_signs()
 
         if spo2 < 88:
@@ -57,8 +57,10 @@ class SmartBedsideSystem:
             self.alarm_on = False
 
     def stop_alarm(self) -> None:
-        # See User Story #3.
-        pass
+
+        if GPIO.input(self.BUTTON_PIN):
+            GPIO.output(self.BUZZER_PIN, False)
+            self.alarm_on = False
 
     def set_o2_valve_angle(self, angle: float) -> None:
         # See User Story #4.
