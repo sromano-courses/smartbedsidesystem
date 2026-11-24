@@ -46,7 +46,7 @@ class SmartBedsideSystem:
         return spo2
 
     def manage_alarm(self) -> None:
-
+        
         spo2 = self.read_vital_signs()
 
         if spo2 < 88:
