@@ -74,4 +74,11 @@ class SmartBedsideSystem:
 
     def manage_oxygen_valve(self) -> None:
         # See User Story #5.
-        pass
+        spo2 = self.read_vital_signs()
+
+        if spo2 < 95:
+            self.set_o2_valve_angle(180.0)
+        else:
+            self.set_o2_valve_angle(0.0)
+
+
