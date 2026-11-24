@@ -64,7 +64,13 @@ class SmartBedsideSystem:
 
     def set_o2_valve_angle(self, angle: float) -> None:
         # See User Story #4.
-        pass
+        if angle < 0.0 or angle > 180.0:
+            raise SmartBedsideError()
+
+        duty_cycle = 5.0 + (angle / 180.0) * 5.0
+
+        self.o2_servo.ChangeDutyCycle(duty_cycle)
+        self.o2_valve_angle = angle
 
     def manage_oxygen_valve(self) -> None:
         # See User Story #5.
